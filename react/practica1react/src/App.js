@@ -7,8 +7,9 @@ import Player from "./Player";
 import Ganador from "./Ganador";
 
 function App() {
-  const [name, setName] = useState([]);
-  const [data, setData] = useState([]);
+  const [name, setName] = useState([]); //nombres axios
+  const [data, setData] = useState([]); //[{pista, j1, j2, res}]
+  // const [playerId, setPlayerId] = useState([1,2,3,4,6,7,8,9,10]);
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
 
@@ -28,14 +29,14 @@ function App() {
   }
 
   const handleClick = () => {
-    setNum(randomNumberInRange(1, 10));
-  };
 
-  const getGanador = async () => {
-    try {
-      let n1 = {};
-    } catch (err) {
-      console.error(err);
+    // data[0]={"pista": 3, "j1": 5, "j2": 6, "res": 1};
+    
+    for(var i=0; i<5; i++)
+    {
+      setNum1(randomNumberInRange(1, 10));
+      setNum2(randomNumberInRange(1, 10));
+      data[i]={"pista": i, "j1": num1, "j2": num2, "res": 1};
     }
   };
 
@@ -71,17 +72,18 @@ function App() {
           </button>
         </div>
       </div>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
-            <th>Sorteo</th>
+            <th>Pista</th>
             <th>Jugador 1</th>
-            <th>Jugador2</th>
+            <th>Jugador 2</th>
+            <th>Resultado</th>
           </tr>
         </thead>
         <tbody>
-          {name.map((player) => (
-            <Ganador player={player} />
+          {data.map((data) => (
+            <Ganador data={data} />
           ))}
         </tbody>
       </table>

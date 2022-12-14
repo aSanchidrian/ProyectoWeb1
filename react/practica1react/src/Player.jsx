@@ -7,7 +7,7 @@ const players = ({ player }) => {
       <td>{player.name}</td>
       <td>
         <button
-          class="btn btn-primary"
+          className="btn btn-primary"
           type="button"
           data-toggle="collapse"
           data-target={"#id" + player.id}

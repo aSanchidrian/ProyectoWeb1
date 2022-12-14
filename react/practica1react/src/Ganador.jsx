@@ -1,11 +1,15 @@
 import React from "react";
 
-const ganador = ({ player }) => {
+const ganador = ({ data }) => {
+
+  // data[0]={"pista": 3, "j1": 5, "j2": 6, "res": 1};
+
   return (
-    <tr class="table-info">
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+    <tr className="table-info">
+      <th scope="row">{data.pista}</th>
+      <td>{data.j1}</td>
+      <td>{data.j2}</td>
+      <td>{data.res}</td>
     </tr>
   );
 };
