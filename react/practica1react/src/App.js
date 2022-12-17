@@ -1,17 +1,16 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Player from "./Player";
 import Ganador from "./Ganador";
 
 function App() {
   const [name, setName] = useState([]); //nombres axios
-  const [data, setData] = useState([]); //[{pista, j1, j2, res}]
-  // const [playerId, setPlayerId] = useState([1,2,3,4,6,7,8,9,10]);
-  const [num1, setNum1] = useState(0);
-  const [num2, setNum2] = useState(0);
+  const [winner, setWinner] = useState([]); //[{pista, j1, j2, res}]
+  const [nums, setNums] = useState([]);
+  // const [exito, setExito] = useState(0);
 
   const sendGetRequest = async () => {
     try {
@@ -30,28 +29,58 @@ function App() {
 
   const handleClick = () => {
 
-    // data[0]={"pista": 3, "j1": 5, "j2": 6, "res": 1};
-    
-    for(var i=0; i<5; i++)
+    handleReset();
+
+    for(let i=0; i<5; i++)
     {
-      setNum1(randomNumberInRange(1, 10));
-      setNum2(randomNumberInRange(1, 10));
-      data[i]={"pista": i, "j1": num1, "j2": num2, "res": 1};
+      let num1=0
+      let num2=0
+      let numRes=0
+
+      num1 = i+1;
+      num2 = randomNumberInRange(6, 10);
+      numRes = randomNumberInRange(1, 2);
+
+      for(let i=0; i<5; i++)
+      {
+        console.log(nums);
+      }
+
+      while(nums.includes(num2))
+      {
+        num2 = randomNumberInRange(6, 10);
+        setNums([num2])
+      }
+
+      setWinner((winner)=>{
+        return [...winner, {pista: i, j1: num1, j2: num2, res: numRes}];
+      });
+
+      setNums([num2])
     }
   };
 
+  const handleReset = () => {
+    setWinner([]);
+  }
+
+  useEffect(() => {
+    sendGetRequest();
+    // setNums([1,2,3,4,5,6,7,8,9,10])
+  }, []);
+
   return (
-    <div onClick={sendGetRequest}>
+    <div>
       <table className="table">
         <thead>
           <tr>
             <th>ID</th>
             <th>First Name</th>
-            <th>More info</th>
+            <th>Info</th>
           </tr>
         </thead>
         <tbody>
-          {name.map((player) => (
+          {name.map((player, i) => (
             <Player player={player} />
           ))}
         </tbody>
@@ -67,7 +96,7 @@ function App() {
           </button>
         </div>
         <div className="p-2">
-          <button type="button" className="btn btn-primary">
+          <button type="button" className="btn btn-primary" onClick={handleReset}>
             Reiniciar
           </button>
         </div>
@@ -82,9 +111,9 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {data.map((data) => (
-            <Ganador data={data} />
-          ))}
+        {winner.map((rounds) => (
+          <Ganador round={rounds} />
+        ))}
         </tbody>
       </table>
     </div>
