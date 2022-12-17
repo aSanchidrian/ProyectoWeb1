@@ -2,15 +2,14 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Carousel from "react-bootstrap/Carousel";
 
 import Player from "./Player";
 import Ganador from "./Ganador";
 
 function App() {
   const [name, setName] = useState([]); //nombres axios
-  const [winner, setWinner] = useState([]); //[{pista, j1, j2, res}]
-  const [nums, setNums] = useState([]);
-  // const [exito, setExito] = useState(0);
+  const [match, setMatch] = useState([]);
 
   const sendGetRequest = async () => {
     try {
@@ -23,50 +22,48 @@ function App() {
     }
   };
 
-  function randomNumberInRange(min, max) {
+  const randomNumberInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  };
 
   const handleClick = () => {
-
     handleReset();
 
-    for(let i=0; i<5; i++)
-    {
-      let num1=0
-      let num2=0
-      let numRes=0
+    let nums = [...name];
 
-      num1 = i+1;
-      num2 = randomNumberInRange(6, 10);
-      numRes = randomNumberInRange(1, 2);
+    nums = nums.sort(function () {
+      return Math.random() - 0.5;
+    });
 
-      for(let i=0; i<5; i++)
-      {
-        console.log(nums);
-      }
-
-      while(nums.includes(num2))
-      {
-        num2 = randomNumberInRange(6, 10);
-        setNums([num2])
-      }
-
-      setWinner((winner)=>{
-        return [...winner, {pista: i, j1: num1, j2: num2, res: numRes}];
-      });
-
-      setNums([num2])
+    for (let i = 0; i < nums.length; i += 2) {
+      setMatch((current) => [
+        ...current,
+        { pista: i, j1: nums[i].id, j2: nums[i + 1].id, res: 0 },
+      ]);
     }
   };
 
+  const getWinners = () => {
+    const matches = match.map(function (game) {
+      let numRes = randomNumberInRange(1, 2);
+
+      return {
+        pista: game.pista,
+        j1: game.j1,
+        j2: game.j2,
+        res: numRes,
+      };
+    });
+
+    setMatch(matches);
+  };
+
   const handleReset = () => {
-    setWinner([]);
-  }
+    setMatch([]);
+  };
 
   useEffect(() => {
     sendGetRequest();
-    // setNums([1,2,3,4,5,6,7,8,9,10])
   }, []);
 
   return (
@@ -80,7 +77,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {name.map((player, i) => (
+          {name.map((player) => (
             <Player player={player} />
           ))}
         </tbody>
@@ -96,7 +93,20 @@ function App() {
           </button>
         </div>
         <div className="p-2">
-          <button type="button" className="btn btn-primary" onClick={handleReset}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={getWinners}
+          >
+            Ver ganadores
+          </button>
+        </div>
+        <div className="p-2">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleReset}
+          >
             Reiniciar
           </button>
         </div>
@@ -111,11 +121,46 @@ function App() {
           </tr>
         </thead>
         <tbody>
-        {winner.map((rounds) => (
-          <Ganador round={rounds} />
-        ))}
+          {match.map((rounds) => (
+            <Ganador round={rounds} />
+          ))}
         </tbody>
       </table>
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="holder.js/800x400?text=First slide&bg=373940"
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="holder.js/800x400?text=First slide&bg=373940"
+            alt="Second slide"
+          />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="holder.js/800x400?text=First slide&bg=373940"
+            alt="Third slide"
+          />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

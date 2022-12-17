@@ -18,9 +18,9 @@ const players = ({ player }) => {
         </button>
         <div className="collapse" id={"id" + player.id}>
           <div className="card card-body">
-            <span>{player.address.street}</span>
-            <a>{player.address.suite}</a>
-            <a>{player.address.city}</a>
+            <span>Address: {player.address.street}</span>
+            <a>Suite: {player.address.suite}</a>
+            <a>City: {player.address.city}</a>
           </div>
         </div>
       </td>
