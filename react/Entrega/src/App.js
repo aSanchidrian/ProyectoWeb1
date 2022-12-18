@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -13,8 +13,6 @@ import Card from "./Card";
 function App() {
   const [name, setName] = useState([]); //nombres axios
   const [match, setMatch] = useState([]);
-
-  //https://jsonplaceholder.typicode.com/users
 
   const sendGetRequest = async () => {
     try {
