@@ -3,7 +3,7 @@ import React from "react";
 const card = ({ info }) => {
   return (
     <div
-      className="card text-black bg-light m-2 mt-4 d-inline-flex"
+      className="card text-black bg-light mt-4 d-inline-block"
       style={{ width: "30rem" }}
     >
       <div className="card-header">
@@ -13,7 +13,7 @@ const card = ({ info }) => {
       <div className="card-body">
         <h4 className="card-title">{info.name}</h4>
         <p className="card-text">
-          <img src={info.name+".png"} width="200" height="200" />
+          <img src={info.name + ".png"} width="200" height="200" alt="" />
         </p>
         <button
           type="button"
