@@ -14,11 +14,11 @@ function App() {
   const [name, setName] = useState([]); //nombres axios
   const [match, setMatch] = useState([]);
 
-  //https://jsonplaceholder.typicode.com/users
+  //
 
   const sendGetRequest = async () => {
     try {
-      const resp = await axios.get("https://jsonplaceholder.ir/users");
+      const resp = await axios.get("https://jsonplaceholder.typicode.com/users");
       setName(resp.data);
     } catch (err) {
       console.error(err);
