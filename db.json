@@ -1,0 +1,124 @@
+[
+
+   {
+
+      "id":1,
+
+      "name":"Django",
+
+      "description":"Framework web de alto nivel que permite el desarrollo rápido de sitios web seguros y mantenibles.",
+
+      "code":[
+
+         "import tornado.ioloop\n",
+
+         "import tornado.web\n\n",
+
+         "class MainHandler(tornado.web.RequestHandler):\n",
+
+         "   def get(self):\n",
+
+         "   self.write('Hello, world')\n",
+
+         "def make_app():\n",
+
+         "   return tornado.web.Application([\n",
+
+         "   (r' / ', MainHandler),\n",
+
+         "])\n",
+
+         "if __name__ == '__main__':\n",
+
+         "   app = make_app()\n",
+
+         "   app.listen(8888)\n",
+
+         "   tornado.ioloop.IOLoop.current().start()],\n"
+
+      ]
+
+   },
+
+   {
+
+      "id":2,
+
+      "name":"Flask",
+
+      "description":"Flask es un framework ligero escrito en Python que facilita el desarrollo de aplicaciones Web bajo el patrón MVC, similar a Sinatra de Ruby o Express de Node.js.",
+
+      "code":[
+
+         "import tornado.ioloop\n",
+
+         "import tornado.web\n\n",
+
+         "class MainHandler(tornado.web.RequestHandler):\n",
+
+         "   def get(self):\n",
+
+         "   self.write('Hello, world')\n",
+
+         "def make_app():\n",
+
+         "   return tornado.web.Application([\n",
+
+         "   (r' / ', MainHandler),\n",
+
+         "])\n",
+
+         "if __name__ == '__main__':\n",
+
+         "   app = make_app()\n",
+
+         "   app.listen(8888)\n",
+
+         "   tornado.ioloop.IOLoop.current().start()],\n"
+
+      ]
+
+   },
+
+   {
+
+      "id":3,
+
+      "name":"Tornado",
+
+      "description":"Tornado es un framework web de Python y una biblioteca de networking asíncrona, desarrollada originalmente en FriendFeed.",
+
+      "code":[
+
+         "import tornado.ioloop\n",
+
+         "import tornado.web\n\n",
+
+         "class MainHandler(tornado.web.RequestHandler):\n",
+
+         "   def get(self):\n",
+
+         "   self.write('Hello, world')\n",
+
+         "def make_app():\n",
+
+         "   return tornado.web.Application([\n",
+
+         "   (r' / ', MainHandler),\n",
+
+         "])\n",
+
+         "if __name__ == '__main__':\n",
+
+         "   app = make_app()\n",
+
+         "   app.listen(8888)\n",
+
+         "   tornado.ioloop.IOLoop.current().start()],\n"
+
+      ]
+
+   },
+
+   {
+
