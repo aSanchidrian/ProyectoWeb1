@@ -2,9 +2,12 @@ import React from "react";
 import "./App.css";
 // import axios from "axios";
 import { useState, useEffect } from "react";
+// import Button from "react-bootstrap/Button";
 // import Modal from "react-bootstrap/Modal";
+import Carousel from "react-bootstrap/Carousel";
 
 import Card from "./Card";
+import Prueba from "./Prueba";
 
 function App() {
   const [info, setInfo] = useState([]);
@@ -268,9 +271,7 @@ function App() {
       <div>
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              PyLibs
-            </a>
+            <a className="navbar-brand">PyLibs</a>
             <button
               className="navbar-toggler"
               type="button"
@@ -304,12 +305,22 @@ function App() {
           </div>
         </nav>
       </div>
-
-      <div className="mt-5">
+      <br></br>
+      <br></br>
+      <br></br>
+      <div className="mt-1">
         {info.map((info) => (
-          <Card info={info} />
+          <Card info={info} test={"modalShow"} />
         ))}
       </div>
+
+      <>
+        <Carousel>
+          {info.map((info) => (
+            <Prueba info={info} test={"modalShow"} />
+          ))}
+        </Carousel>
+      </>
     </div>
   );
 }

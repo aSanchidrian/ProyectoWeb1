@@ -1,32 +1,34 @@
 import React from "react";
 
-const card = ({ info }) => {
+import Prueba from "./Prueba";
+
+const card = (props) => {
   return (
     <div
       className="card text-black bg-light mt-4 d-inline-block"
       style={{ width: "30rem" }}
     >
       <div className="card-header">
-        {info.id}
-        {info.name}
+        {props.info.id}
+        {props.info.name}
       </div>
       <div className="card-body">
-        <h4 className="card-title">{info.name}</h4>
+        <h4 className="card-title">{props.info.name}</h4>
         <p className="card-text">
-          <img src={info.name + ".png"} width="200" height="200" alt="" />
+          <img src={props.info.name + ".png"} width="200" height="200" alt="" />
         </p>
         <button
           type="button"
           className="btn btn-primary"
           data-toggle="modal"
-          data-target={"#modal" + info.id}
+          data-target={"#modal" + props.info.id}
         >
           Modal
         </button>
 
         <div
           className="modal"
-          id={"modal" + info.id}
+          id={"modal" + props.info.id}
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
@@ -36,7 +38,7 @@ const card = ({ info }) => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  {info.name}
+                  {props.info.name}
                 </h5>
                 <button
                   type="button"
@@ -47,7 +49,7 @@ const card = ({ info }) => {
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
-              <div className="modal-body">{info.description}</div>
+              <div className="modal-body">{props.info.description}</div>
               <div className="modal-footer">
                 <button
                   type="button"
@@ -61,17 +63,17 @@ const card = ({ info }) => {
                     className="btn btn-primary"
                     type="button"
                     data-toggle="collapse"
-                    data-target={"#collapse" + info.id}
+                    data-target={"#collapse" + props.info.id}
                     aria-expanded="false"
                     aria-controls="collapseExample"
                   >
                     Show code example
                   </button>
                 </p>
-                <div className="collapse" id={"collapse" + info.id}>
+                <div className="collapse" id={"collapse" + props.info.id}>
                   <div className="card card-body">
                     <pre>
-                      <code class="language-py">{info.code}</code>
+                      <code className="language-py">{props.info.code}</code>
                     </pre>
                   </div>
                 </div>
